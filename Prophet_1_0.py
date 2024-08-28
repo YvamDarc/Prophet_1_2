@@ -205,6 +205,17 @@ def main():
         st.write("Prévisions :")
         st.write(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(forecast_periods))
 
+        buffer = BytesIO()
+        with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+            forecast.to_excel(writer, sheet_name='Prévisions', index=False)
+            
+        buffer.seek(0)
+        st.download_button(
+            label="Télécharger les prévisions en Excel",
+            data=buffer.getvalue(),
+            file_name="previsions_prophet.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+
         st.write("Graphique des prévisions :")
         fig_forecast = plot_plotly(model, forecast)
         st.plotly_chart(fig_forecast)
