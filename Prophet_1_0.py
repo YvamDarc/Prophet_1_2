@@ -214,7 +214,7 @@ def main():
             label="Télécharger les prévisions en Excel",
             data=buffer.getvalue(),
             file_name="previsions_prophet.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
         st.write("Graphique des prévisions :")
         fig_forecast = plot_plotly(model, forecast)
