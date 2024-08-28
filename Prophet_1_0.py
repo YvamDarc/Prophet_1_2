@@ -133,7 +133,7 @@ def add_real_values_and_calculate_differences(df_forecast, forecast_periods):
     return df_forecast
 
 def main():
-    st.title("Application de prévision de séries temporelles avec Prophet - Composants supplémentaires")
+    st.title("Application de prévision de séries temporelles avec Prophet et autres utilitaires (Mémoire DEC Marc DAVY)")
 
     uploaded_file = st.file_uploader("Téléchargez votre fichier CSV ou Excel", type=["csv", "xlsx"])
 
@@ -214,7 +214,7 @@ def main():
         st.plotly_chart(fig_components)
 
         st.write("Cross-Validation")
-        cross_val_type = st.selectbox("Type de cross-validation :", ["Standard", "Cumulée", "GridSearch", "Exploitation des écarts"])
+        cross_val_type = st.selectbox("Type de cross-validation et autres utilitaires :", ["Standard", "Cumulée", "GridSearch", "Exploitation des écarts"])
 
         initial = st.number_input("Période initiale (en jours) :", min_value=30, value=365)
         period = st.number_input("Période de découpage (en jours) :", min_value=1, value=180)
@@ -222,7 +222,7 @@ def main():
 
         if cross_val_type == "Standard":
             with st.form(key='cv_form'):
-                if st.form_submit_button("Lancer la cross-validation"):
+                if st.form_submit_button("Lancer la cross-validation classique"):
                     cv_results = perform_cross_validation(model, initial, period, horizon)
                     st.session_state.cv_results = cv_results  # Stocker les résultats dans le session_state
 
